@@ -2,8 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routes'
 import { setPageTitle } from '@/utils'
+import store from '@/store'
 
 Vue.use(Router)
+
+// 后台的app名称
+const appName = store.state.app.appName
 
 const router = new Router({
   routes
@@ -14,6 +18,7 @@ const HAS_LOGING = localStorage.getItem('HAS_LOGING')
 
 // 全局路由跳转前
 router.beforeEach((to, from, next) => {
+  setPageTitle(appName)
   // console.log(to)
   // console.log(from)
   // console.log(next)

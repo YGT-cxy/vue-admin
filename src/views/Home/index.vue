@@ -21,6 +21,8 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$store)
+    console.log(this.$store.getters.app)
     console.log(this.$route.params)
   },
   methods: {
