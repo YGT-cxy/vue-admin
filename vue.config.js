@@ -16,6 +16,10 @@ module.exports = {
   // 打包时不生成map文件
   productionSourceMap: false,
   devServer: {
-    proxy: 'http://localhost:8000'
+    proxy: {
+      '/getUserInfo': {
+        target: 'http://localhost:3000'
+      }
+    }
   }
 }

@@ -22,14 +22,41 @@
       <p v-for="(item, index) of userTodoList" :key="index">{{ item }}</p>
       <button type="button" @click="register2">动态注册store二级子模块</button>
     </div>
+    <div>
+      <button type="button" @click="login">登录接口</button>
+    </div>
+    <count-to :startVal="2000"
+      :endVal="4000"
+      :useEasing="true"
+      :prefix="'$'"
+      :suffix="'元'" />
+    <count-to :startVal="2000"
+      :endVal="4000"
+      :useEasing="false" />
+    <count-to :startVal="10"
+      :endVal="2000"
+    />
+    <count-to ref="countTest"
+      :startVal="3000"
+      :endVal="endVal"
+    />
+    <button type="button" @click="updateCount">更新值</button>
+    <button type="button" @click="updateCount2">更新值2</button>
   </div>
 </template>
 
 <script>
+import { login } from '@/api/user'
+import CountTo from '@/components/count-to'
+
 export default {
   name: 'Home',
+  components: {
+    CountTo
+  },
   data () {
     return {
+      endVal: 5000
     }
   },
   computed: {
@@ -93,6 +120,20 @@ export default {
         }
       })
       // console.log(this.$store.state)
+    },
+    // 登录
+    login() {
+      // console.log(login)
+      login().then(res => {
+        console.log(res)
+      })
+    },
+    updateCount() {
+      this.endVal += 1000
+    },
+    updateCount2() {
+      this.$refs['countTest'].update(6000)
+      // this.endVal += 1000
     }
   }
 }
